@@ -2,7 +2,7 @@
 
 Kierancli uses a mode system (similar to VIM) for accessing different functionality. eg: gitclone, commandinput, runprogram.
 
-# Commandinput
+## Commandinput
 This mode allows execution of hard-coded functionality such as kierancli's pwd, help, etc.
 
 # Gitclone
