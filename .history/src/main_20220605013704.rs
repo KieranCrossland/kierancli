@@ -72,7 +72,7 @@ fn gitclone() {
 };
     prompt();
     commandinput();
-
+    
     } else {
         let repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
             Ok(repo) => repo,
@@ -80,9 +80,11 @@ fn gitclone() {
      };
          blue!("{} was cloned\n", input_url);
          prompt();
-        commandinput();
      }
     }
+
+
+    
 
 
 

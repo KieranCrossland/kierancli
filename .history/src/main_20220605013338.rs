@@ -70,19 +70,23 @@ fn gitclone() {
             Ok(repo) => repo,
             Err(e) => panic!("failed to clone: {}", e),    
 };
-    prompt();
-    commandinput();
-
-    } else {
-        let repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
-            Ok(repo) => repo,
-            Err(e) => panic!("failed to clone: {}", e),    
-     };
-         blue!("{} was cloned\n", input_url);
-         prompt();
-        commandinput();
-     }
+    
     }
+
+    
+    
+    if input_url.as_str().trim() == "exit" {
+        prompt();
+        commandinput();
+    }
+
+    let repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
+       Ok(repo) => repo,
+       Err(e) => panic!("failed to clone: {}", e),    
+};
+    blue!("{} was cloned\n", input_url);
+    prompt();
+}
 
 
 

@@ -80,7 +80,6 @@ fn gitclone() {
      };
          blue!("{} was cloned\n", input_url);
          prompt();
-        commandinput();
      }
     }
 

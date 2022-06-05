@@ -1,4 +1,4 @@
-use std::*;
+use std::io;
 use git2::Repository;
 use std::process::*;
 use std::io::stdin;
@@ -64,25 +64,19 @@ fn gitclone() {
     if input_url.as_str().trim() == "q" {
         prompt();
         commandinput();
-        
-    } else if input_url.trim() == "self" {
-        let repo = match Repository::clone("https://github.com/KieranCrossland/kierancli", "kierancli_self") {
-            Ok(repo) => repo,
-            Err(e) => panic!("failed to clone: {}", e),    
-};
-    prompt();
-    commandinput();
-
-    } else {
-        let repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
-            Ok(repo) => repo,
-            Err(e) => panic!("failed to clone: {}", e),    
-     };
-         blue!("{} was cloned\n", input_url);
-         prompt();
-        commandinput();
-     }
     }
+    if input_url.as_str().trim() == "exit" {
+        prompt();
+        commandinput();
+    }
+
+    let repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
+       Ok(repo) => repo,
+       Err(e) => panic!("failed to clone: {}", e),    
+};
+    blue!("{} was cloned\n", input_url);
+    prompt();
+}
 
 
 
