@@ -1,7 +1,7 @@
+use std::env;
 use git2::Repository;
+use std::process::{Child, Command, Stdio};
 use std::io::{stdin, stdout, Write};
-use std::*;
-use std::{env, process, process::Command};
 #[macro_use]
 extern crate colour;
 
@@ -24,55 +24,65 @@ fn commandinput() {
 
     if command.trim() == "gitclone" {
         gitclone();
+
     } else if command.trim() == "help" {
         help();
+
     } else if command.trim() == "pwd" {
         pwd().expect("failed to pwd");
+
     } else if command.trim() == "exit" {
         qexit();
+    
     } else if command.trim() == "q" {
         qexit();
+      
     } else if command.trim() == "runbinary" {
-        runbinary();
+        runbinary();           
+    
     } else if command.trim() == "posix" {
         posix();
+        
+
+    
     } else {
         prompt();
     }
-    commandinput();
-}
+    commandinput();}
 
-fn gitclone() {
+
+fn gitclone() {    
     green!("(q to exit)Enter a git-repo URL:");
-    let mut input_url = String::new();
+    let  mut input_url = String::new();
 
     io::stdin()
         .read_line(&mut input_url)
         .expect("std::io failed read");
-
+   
     if input_url.as_str().trim() == "q" {
         prompt();
         commandinput();
+        
     } else if input_url.trim() == "self" {
-        let repo = match Repository::clone(
-            "https://github.com/KieranCrossland/kierancli",
-            "kierancli_self",
-        ) {
+        let repo = match Repository::clone("https://github.com/KieranCrossland/kierancli", "kierancli_self") {
             Ok(repo) => repo,
-            Err(e) => panic!("failed to clone: {}", e),
-        };
-        prompt();
-        commandinput();
+            Err(e) => panic!("failed to clone: {}", e),    
+};
+    prompt();
+    commandinput();
+
     } else {
         let repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
             Ok(repo) => repo,
-            Err(e) => panic!("failed to clone: {}", e),
-        };
-        blue!("{} was cloned\n", input_url);
-        prompt();
+            Err(e) => panic!("failed to clone: {}", e),    
+     };
+         blue!("{} was cloned\n", input_url);
+         prompt();
         commandinput();
+     }
     }
-}
+
+
 
 fn help() {
     green!("Avaliable commands: ");
@@ -80,12 +90,17 @@ fn help() {
     prompt();
 }
 
+
+
 fn pwd() -> std::io::Result<()> {
     let path = env::current_dir()?;
     println!("{}", path.display());
     prompt();
     Ok(())
+    
 }
+
+
 
 fn homedir() {
     match env::home_dir() {
@@ -94,37 +109,53 @@ fn homedir() {
     }
 }
 
+
+
 fn print_type_of<T>(_: &T) {
-println!("{}", std::any::type_name::<T>());
+    println!("{}", std::any::type_name::<T>())
 }
+
+
 
 fn qexit() {
     green_ln!("Exiting:");
-    process::exit(0);
+        process::exit(0);
 }
 
-fn runbinary() {
+
+
+fn runbinary(){
+    
     loop {
+        // use the `>` character as the prompt
         cyan!("runbinary: ");
         homedir();
-
+        // need to explicitly flush this to ensure it prints before read_line
         print!("> ");
         stdout().flush();
+
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();
-
         if input.as_str().trim() == "q" {
             prompt();
             commandinput();
         }
-        let mut parts = input.trim().split_whitespace();
-        let command = parts.next().unwrap();
-        let args = parts;
-        let mut child = Command::new(command).args(args).spawn().unwrap();
+        if input.as_str().trim() == "exit" {
+            prompt();
+            commandinput();
+        }
+        let command = input.trim();
+
+        let mut child = Command::new(command)
+            .spawn()
+            .unwrap();
+
         // don't accept another command until this one completes
-        child.wait();
+        child.wait(); 
     }
-}
+}  
+
+
 
 fn posix() {
     loop {
@@ -132,9 +163,14 @@ fn posix() {
         stdout().flush();
 
         let command = "sh";
-        let mut child = Command::new(command).spawn().unwrap();
+        let mut child = Command::new(command)
+            .spawn()
+            .unwrap();
 
         // don't accept another command until this one completes
-        child.wait();
+        child.wait(); 
     }
 }
+
+
+

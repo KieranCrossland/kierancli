@@ -95,7 +95,7 @@ fn homedir() {
 }
 
 fn print_type_of<T>(_: &T) {
-println!("{}", std::any::type_name::<T>());
+    println!("{}", std::any::type_name::<T>())
 }
 
 fn qexit() {
@@ -107,7 +107,7 @@ fn runbinary() {
     loop {
         cyan!("runbinary: ");
         homedir();
-
+        
         print!("> ");
         stdout().flush();
         let mut input = String::new();
@@ -117,10 +117,11 @@ fn runbinary() {
             prompt();
             commandinput();
         }
-        let mut parts = input.trim().split_whitespace();
-        let command = parts.next().unwrap();
-        let args = parts;
-        let mut child = Command::new(command).args(args).spawn().unwrap();
+        
+        let command = input.trim();
+
+        let mut child = Command::new(command).spawn().unwrap();
+
         // don't accept another command until this one completes
         child.wait();
     }
