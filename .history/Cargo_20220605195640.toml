@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 colour = "0.6.0"
 git2 = "0.14.4"
+dirs = "4.0.0"

@@ -110,7 +110,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("mode gitclone , exit , pwd , help , ls,  mode program , exit , mode rust , q\n");
+    blue!("mode gitclone , exit , pwd , help , mode run_program , exit , q\n");
     prompt();
 }
 

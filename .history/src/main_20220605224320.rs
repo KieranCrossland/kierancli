@@ -5,7 +5,7 @@ use std::{env, process, process::Command};
 use std::fs;
 use std::path::Path;
 use std::error::Error;
-
+use structopt::StructOpt;
 
 #[macro_use]
 extern crate colour;
@@ -110,7 +110,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("mode gitclone , exit , pwd , help , ls,  mode program , exit , mode rust , q\n");
+    blue!("mode gitclone , exit , pwd , help , mode run_program , exit , q\n");
     prompt();
 }
 
@@ -185,14 +185,22 @@ fn run_program_mode() {
 
 // below forms Unix's /bin/ls
 
+#[derive(StructOpt, Debug)]
+struct Opt {
+	/// Output file
+	#[structopt(default_value = ".", parse(from_os_str))]
+	path: PathBuf,
+}
 
 
 fn ls() {
-	if let Err(ref e) = run(Path::new(".")) {
-		println!("{}", e);
-		process::exit(1);
+	let opt = Opt::from_args();
+	if let Err(ref e) = run(&opt.path) {
+			println!("{}", e);
+			process::exit(1);
 	}
 }
+
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
 	if dir.is_dir() {
 		for entry in fs::read_dir(dir)? {

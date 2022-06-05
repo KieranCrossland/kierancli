@@ -6,7 +6,6 @@ use std::fs;
 use std::path::Path;
 use std::error::Error;
 
-
 #[macro_use]
 extern crate colour;
 
@@ -41,11 +40,8 @@ fn run_rs_mode() {
 
     } else if rustcommand.trim() == "mode gitclone" {
         gitclone();
-
-    } else if rustcommand.trim() == "ls" {
+    } else if rustcommand.trim() == "ls" 
         ls();
-        prompt();
-
     } else if rustcommand.trim() == "clear" {
         print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
         prompt();
@@ -110,7 +106,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("mode gitclone , exit , pwd , help , ls,  mode program , exit , mode rust , q\n");
+    blue!("mode gitclone , exit , pwd , help , mode run_program , exit , q\n");
     prompt();
 }
 
@@ -181,18 +177,13 @@ fn run_program_mode() {
     }
 }
 
-
-
-// below forms Unix's /bin/ls
-
-
-
 fn ls() {
 	if let Err(ref e) = run(Path::new(".")) {
 		println!("{}", e);
 		process::exit(1);
 	}
 }
+
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
 	if dir.is_dir() {
 		for entry in fs::read_dir(dir)? {
