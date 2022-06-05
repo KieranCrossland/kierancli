@@ -34,6 +34,7 @@ fn commandinput() {
         qexit();
     } else if command.trim() == "runprogram" {
         runprogram();
+    } 
     } else {
         prompt();
     }

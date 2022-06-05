@@ -32,8 +32,10 @@ fn commandinput() {
         qexit();
     } else if command.trim() == "q" {
         qexit();
-    } else if command.trim() == "runprogram" {
-        runprogram();
+    } else if command.trim() == "runbinary" {
+        runbinary();
+    } else if command.trim() == "posix" {
+        posix();
     } else {
         prompt();
     }
@@ -74,7 +76,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("gitclone , exit , pwd , help , runprogram , exit , q\n");
+    blue!("gitclone , exit , pwd , help , runbinary , exit , q\n");
     prompt();
 }
 
@@ -101,9 +103,9 @@ fn qexit() {
     process::exit(0);
 }
 
-fn runprogram() {
+fn runbinary() {
     loop {
-        cyan!("runprogram: ");
+        cyan!("runbinary: ");
         homedir();
 
         print!("> ");
@@ -124,3 +126,15 @@ fn runprogram() {
     }
 }
 
+fn posix() {
+    loop {
+        print!("> ");
+        stdout().flush();
+
+        let command = "sh";
+        let mut child = Command::new(command).spawn().unwrap();
+
+        // don't accept another command until this one completes
+        child.wait();
+    }
+}

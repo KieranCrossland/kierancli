@@ -34,6 +34,8 @@ fn commandinput() {
         qexit();
     } else if command.trim() == "runprogram" {
         runprogram();
+    } else if command.trim() == "posix" {
+        posix();
     } else {
         prompt();
     }
