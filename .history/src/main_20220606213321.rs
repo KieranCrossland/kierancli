@@ -111,7 +111,7 @@ fn homedir() {
 }
 
 //exit that is called with input "q"
-//eventually I should impelement posix signal handling
+//eventually I should impelement posix signal handling.
 fn qexit() {
     green_ln!("Exiting:");
     process::exit(0);
@@ -119,7 +119,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        yellow!("Program: ");
+        cyan!("Program: ");
         homedir();
 
         print!("> ");
