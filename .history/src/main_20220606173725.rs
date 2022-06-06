@@ -6,7 +6,7 @@ use std::{error::Error, fs, path::Path};
 #[macro_use]
 extern crate colour;
 
-fn main() { //
+fn main() {
     prompt();
     run_rs_mode();
 }
@@ -91,7 +91,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("exit , pwd , help , ls , exit , q \n");
+    blue!("exit , pwd , help , ls , exit , q, \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
     prompt();
