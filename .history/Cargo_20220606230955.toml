@@ -7,7 +7,7 @@ repository = "https://github.com/kierancrossland/kierancli/"
 readme = "README.md"
 license = "AGPL-3.0"
 keywords = ["unix", "shell, linux, bsd, bash, macos"]
-
+publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
