@@ -20,6 +20,7 @@ Now running kierancli-update will update and install the program! (be warned rus
 
 ## Program mode.
 This mode is a basic shell for running system programs eg: ls, cat neofetch.
+
 Program mode works much better on Unix than Windows due some missunderstood PowerShell retardedness.
 For example, opening another program like vim and exiting will cause kierancli to quit in PowerShell,
 however Bash will keep running and return to program mode.
