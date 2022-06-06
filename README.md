@@ -14,7 +14,7 @@ Theoretically this could be used as a self-updater, however for updating I use t
 
 alias kierancli-update="rm -rf ~/coding/rust/kierancli; git clone https://github.com/kierancrossland/kierancli ~/coding/rust/kierancli; cd ~/coding/rust/kierancli; cargo build --release"
 
-Make a symlink from /usr/bin/kierancli -> ~/coding/rust/kierancli/release/kierancli
+Make a symlink from /usr/local/bin/kierancli -> ~/coding/rust/kierancli/release/kierancli
 
 Now running kierancli-update will update and install the program! (be warned rust is slow to compile)
 
