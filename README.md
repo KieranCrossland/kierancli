@@ -15,6 +15,7 @@ theoretically this could be used as a self-updater, however for updating I use t
 alias kierancli-update="rm -rf ~/coding/rust/kierancli; git clone https://github.com/kierancrossland/kierancli ~/coding/rust/kierancli; cd ~/coding/rust/kierancli; cargo build --release"
 
 Make a symlink from /usr/bin/kierancli -> ~/coding/rust/kierancli/release/kierancli
+
 Now running kierancli-update will update and install the program! (be warned rust is slow to compile)
 
 ## Program mode.
@@ -25,4 +26,5 @@ however Bash will keep running and return to program mode.
 
 ## Resources used.
 https://endler.dev/2018/ls/
+
 https://www.joshmcguigan.com/blog/build-your-own-shell-rust/
