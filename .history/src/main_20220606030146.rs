@@ -12,8 +12,8 @@ fn main() {
 }
 
 fn prompt() {
-    green!("Rust: ");
-    homedir();
+    green!("Operating RustMode: ");
+    
 }
 
 fn run_rs_mode() {
@@ -118,7 +118,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");

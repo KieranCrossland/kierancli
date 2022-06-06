@@ -12,7 +12,7 @@ fn main() {
 }
 
 fn prompt() {
-    green!("Rust: ");
+    green!("Operating as: ");
     homedir();
 }
 
@@ -93,7 +93,7 @@ fn help() {
     green!("Avaliable commands: ");
     blue!("exit , pwd , help , ls , exit , q, \n");
     green!("Avaliable modes: ");
-    blue!("rust , program , gitclone\n");
+    blue!("mode gitclone , mode program , mode rust  \n");
     prompt();
 }
 
@@ -118,7 +118,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");

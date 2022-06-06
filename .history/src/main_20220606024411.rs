@@ -12,7 +12,7 @@ fn main() {
 }
 
 fn prompt() {
-    green!("Rust: ");
+    green!("Operating as: ");
     homedir();
 }
 
@@ -91,9 +91,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("exit , pwd , help , ls , exit , q, \n");
-    green!("Avaliable modes: ");
-    blue!("rust , program , gitclone\n");
+    blue!("mode gitclone , exit , pwd , help , ls,  mode program , exit , mode rust , q, \n");
     prompt();
 }
 
@@ -111,6 +109,10 @@ fn homedir() {
     }
 }
 
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>());
+}
+
 fn qexit() {
     green_ln!("Exiting:");
     process::exit(0);
@@ -118,7 +120,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");

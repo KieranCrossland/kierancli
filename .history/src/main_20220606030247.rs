@@ -118,7 +118,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");

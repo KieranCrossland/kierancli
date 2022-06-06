@@ -12,7 +12,7 @@ fn main() {
 }
 
 fn prompt() {
-    green!("Rust: ");
+    green!("Operating as: ");
     homedir();
 }
 
@@ -37,7 +37,10 @@ fn run_rs_mode() {
         prompt();
     } else if rustcommand.trim() == "clear" {          
         print!("{esc}[2J{esc}[1;1H", esc = 27 as char);  //""{esc}[2J{esc}[1;1H", esc = 27 as char //ANSI sequence that clears the screen.             
-        prompt();                                           
+        prompt();       
+    } else if rustcommand.trim() == "^L" {
+        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
+        prompt();                                     
     } else if rustcommand.trim() == "pwd" {
         pwd().expect("failed to pwd");
     } else if rustcommand.trim() == "exit" {
@@ -91,9 +94,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("exit , pwd , help , ls , exit , q, \n");
-    green!("Avaliable modes: ");
-    blue!("rust , program , gitclone\n");
+    blue!("mode gitclone , exit , pwd , help , ls,  mode program , exit , mode rust , q\n");
     prompt();
 }
 
@@ -111,6 +112,10 @@ fn homedir() {
     }
 }
 
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>());
+}
+
 fn qexit() {
     green_ln!("Exiting:");
     process::exit(0);
@@ -118,7 +123,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");
@@ -156,7 +161,7 @@ fn run_program_mode() {
 
 
 
-fn ls() {   //ls() and run() are for a minimal /bin/ls implementation
+fn ls() {   //ls() and run() form a minimal unix /bin/ls implementation
     if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);

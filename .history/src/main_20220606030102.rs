@@ -12,7 +12,7 @@ fn main() {
 }
 
 fn prompt() {
-    green!("Rust: ");
+    green!("rs Operating as: ");
     homedir();
 }
 
@@ -118,7 +118,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");

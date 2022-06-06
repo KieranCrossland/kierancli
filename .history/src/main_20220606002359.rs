@@ -1,10 +1,16 @@
 use git2::Repository;
-use std::io::{self, stdin, stdout, Write};
+use std::io::{stdin, stdout, Write};
+use std::*;
 use std::{env, process, process::Command};
-use std::{error::Error, fs, path::Path};
+use std::fs;
+use std::path::Path;
+use std::error::Error;
+
 
 #[macro_use]
 extern crate colour;
+
+
 
 fn main() {
     prompt();
@@ -12,7 +18,7 @@ fn main() {
 }
 
 fn prompt() {
-    green!("Rust: ");
+    green!("Operating as: ");
     homedir();
 }
 
@@ -25,25 +31,35 @@ fn run_rs_mode() {
 
     if rustcommand.trim() == "help" {
         help();
+
     } else if rustcommand.trim() == "mode program" {
         run_program_mode();
+    
     } else if rustcommand.trim() == "mode rust" {
         prompt();
         run_rs_mode();
+
     } else if rustcommand.trim() == "mode gitclone" {
         gitclone();
+
     } else if rustcommand.trim() == "ls" {
         ls();
         prompt();
-    } else if rustcommand.trim() == "clear" {          
-        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);  //""{esc}[2J{esc}[1;1H", esc = 27 as char //ANSI sequence that clears the screen.             
-        prompt();                                           
+
+    } else if rustcommand.trim() == "clear" {
+        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
+        prompt();
+
     } else if rustcommand.trim() == "pwd" {
         pwd().expect("failed to pwd");
+
     } else if rustcommand.trim() == "exit" {
         qexit();
+
     } else if rustcommand.trim() == "q" {
         qexit();
+
+    
     } else {
         red_ln!("Command not found.");
         prompt();
@@ -65,19 +81,20 @@ fn gitclone() {
     } else if input_url.trim() == "self" {
         let _repo = match Repository::clone(
             "https://github.com/KieranCrossland/kierancli",
-            "kierancli_self",
-        ) {
+            "kierancli_self",) {
             Ok(_repo) => _repo,
             Err(e) => panic!("failed to clone: {}", e),
         };
         prompt();
         run_rs_mode();
-    } else if input_url.trim() == "exit" {
+    } else if input_url.trim() == "exit"  {
         prompt();
         run_rs_mode();
+    
     } else if input_url.trim() == "clear" {
         print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
         green!("(q to exit)Enter a git-repo URL:");
+    
     } else {
         let _repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
             Ok(_repo) => _repo,
@@ -87,13 +104,12 @@ fn gitclone() {
         prompt();
         run_rs_mode();
     }
+      
 }
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("exit , pwd , help , ls , exit , q, \n");
-    green!("Avaliable modes: ");
-    blue!("rust , program , gitclone\n");
+    blue!("mode gitclone , exit , pwd , help , ls,  mode program , exit , mode rust , q\n");
     prompt();
 }
 
@@ -105,10 +121,15 @@ fn pwd() -> std::io::Result<()> {
 }
 
 fn homedir() {
+
     match env::home_dir() {
         Some(path) => println!("{}", path.display()),
         None => println!("env:: failed to get $HOME"),
     }
+}
+
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>());
 }
 
 fn qexit() {
@@ -118,7 +139,7 @@ fn qexit() {
 
 fn run_program_mode() {
     loop {
-        cyan!("Program: ");
+        cyan!("program: ");
         homedir();
 
         print!("> ");
@@ -129,14 +150,18 @@ fn run_program_mode() {
         if input.as_str().trim() == "q" {
             prompt();
             run_rs_mode();
+        
         } else if input.trim() == "mode gitclone" {
             gitclone();
+        
         } else if input.trim() == "exit" {
             prompt();
             run_rs_mode();
+
         } else if input.trim() == "mode program" {
             prompt();
             run_program_mode();
+        
         } else if input.trim() == "mode rust" {
             prompt();
             run_rs_mode();
@@ -144,7 +169,8 @@ fn run_program_mode() {
             print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
             cyan!("program: ");
         }
-
+        
+        
         let mut parts = input.trim().split_whitespace();
         let command = parts.next().unwrap();
         let args = parts;
@@ -156,22 +182,26 @@ fn run_program_mode() {
 
 
 
-fn ls() {   //ls() and run() are for a minimal /bin/ls implementation
-    if let Err(ref e) = run(Path::new(".")) {
-        println!("{}", e);
-        process::exit(1);
-    }
+// below forms Unix's /bin/ls
+
+
+
+fn ls() {
+	if let Err(ref e) = run(Path::new(".")) {
+		println!("{}", e);
+		process::exit(1);
+	}
 }
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
-    if dir.is_dir() {
-        for entry in fs::read_dir(dir)? {
-            let entry = entry?;
-            let file_name = entry
-                .file_name()
-                .into_string()
-                .or_else(|f| Err(format!("Invalid entry: {:?}", f)))?;
-            println!("{}", file_name);
-        }
-    }
-    Ok(())
+	if dir.is_dir() {
+		for entry in fs::read_dir(dir)? {
+				let entry = entry?;
+				let file_name = entry
+						.file_name()
+						.into_string()
+						.or_else(|f| Err(format!("Invalid entry: {:?}", f)))?;
+				println!("{}", file_name);
+		}
+	}
+	Ok(())
 }
