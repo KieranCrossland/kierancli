@@ -6,8 +6,7 @@ use std::{error::Error, fs, path::Path};
 #[macro_use]
 extern crate colour;
 
-fn main() {
-    //
+fn main() { //
     prompt();
     run_rs_mode();
 }
@@ -36,9 +35,9 @@ fn run_rs_mode() {
     } else if rustcommand.trim() == "ls" {
         ls();
         prompt();
-    } else if rustcommand.trim() == "clear" {
-        print!("{esc}[2J{esc}[1;1H", esc = 27 as char); //""{esc}[2J{esc}[1;1H", esc = 27 as char //ANSI sequence that clears the screen.
-        prompt();
+    } else if rustcommand.trim() == "clear" {          
+        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);  //""{esc}[2J{esc}[1;1H", esc = 27 as char //ANSI sequence that clears the screen.             
+        prompt();                                           
     } else if rustcommand.trim() == "pwd" {
         pwd().expect("failed to pwd");
     } else if rustcommand.trim() == "q" {
@@ -146,19 +145,20 @@ fn run_program_mode() {
         let args = parts;
         let mut child = Command::new(command).args(args).spawn().unwrap();
         // don't accept another command until this one completes
-        child.wait().expect_err("child.wait panic");
+        child.wait();
     }
 }
 
+
 //parts of ls implementation in rust
-fn ls() {
+fn ls() {   
     if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
     }
 }
-//parts of ls implementation in rust
-fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
+ //parts of ls implementation in rust
+fn run(dir: &Path) -> Result<(), Box<dyn Error>> {  
     if dir.is_dir() {
         for entry in fs::read_dir(dir)? {
             let entry = entry?;

@@ -121,7 +121,7 @@ fn run_program_mode() {
         homedir();
 
         print!("> ");
-        stdout().flush();
+        stdout().flush().expect_err("stdout().flush() failed");
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();
 
