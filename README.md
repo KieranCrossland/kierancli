@@ -9,8 +9,8 @@ This mode allows execution of hard-coded systems such as kierancli's pwd, help, 
 
 ## Gitclone mode.
 This mode is my scuffed git clone function using git2.
-Entering "self" as the URL will clone kierancli's repository,
-theoretically this could be used as a self-updater, however for updating I use this bash alias
+Entering "self" as the URL will clone kierancli's repository.
+Theoretically this could be used as a self-updater, however for updating I use this bash alias
 
 alias kierancli-update="rm -rf ~/coding/rust/kierancli; git clone https://github.com/kierancrossland/kierancli ~/coding/rust/kierancli; cd ~/coding/rust/kierancli; cargo build --release"
 
