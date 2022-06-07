@@ -1,4 +1,4 @@
-# Kierancli documentation.
+# Kierancli.
 
 Kierancli uses a mode system for accessing different functionality.
 The command "mode x" allows switching between different modes. currently there are 3 modes:
