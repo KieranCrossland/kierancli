@@ -1,10 +1,12 @@
-# Kierancli documentation.
+# Kierancli.
 
 Kierancli uses a mode system for accessing different functionality.
 The command "mode x" allows switching between different modes. currently there are 3 modes:
 rust (default), program and gitclone.
 
 ## Installation / Updating.
+``curl https://raw.githubusercontent.com/KieranCrossland/kierancli/master/kierancli-install.sh | bash``
+
 On GNU/Linux and potentially MacOS and BSD (untested) the bash script kierancli-install.sh
 will automatically download, install and update kierancli to its latest version on Git.
 
