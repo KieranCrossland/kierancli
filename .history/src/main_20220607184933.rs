@@ -138,14 +138,17 @@ fn run_program_mode() {
             prompt();
             run_rs_mode();
         } else if input.trim() == "clear" {
-            print!("{esc}[2J{esc}[1;1H", esc = 27 as char); // code to clear the terminal
+            print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
             cyan!("program: ");
         }
 
         let mut parts = input.trim().split_whitespace();
         let command = parts.next().unwrap();
         let args = parts;
-        let mut child = Command::new(command).args(args).spawn().unwrap();
+        let mut child = Command::new(command)
+                                 .args(args)
+                                 .spawn()
+                                 .unwrap();
         // don't accept another command until this one completes
         child.wait();
     }
@@ -172,3 +175,4 @@ fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     }
     Ok(())
 }
+

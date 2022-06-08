@@ -138,7 +138,7 @@ fn run_program_mode() {
             prompt();
             run_rs_mode();
         } else if input.trim() == "clear" {
-            print!("{esc}[2J{esc}[1;1H", esc = 27 as char); // code to clear the terminal
+            print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
             cyan!("program: ");
         }
 
@@ -151,14 +151,14 @@ fn run_program_mode() {
     }
 }
 
-//part of ls implementation in rust
+//parts of ls implementation in rust
 fn ls() {
     if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
     }
 }
-//part of ls implementation in rust
+//parts of ls implementation in rust
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     if dir.is_dir() {
         for entry in fs::read_dir(dir)? {
@@ -172,3 +172,4 @@ fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     }
     Ok(())
 }
+

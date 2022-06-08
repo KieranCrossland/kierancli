@@ -1,10 +1,10 @@
 #!/bin/sh
-echo Starting kierancli installation.
-sleep 1
+
 rm -rf ~/.local/share/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancli/
 cd ~/.local/share/kierancli
 echo you should have cargo installed
+sleep 0.5
 cargo build --release
 mkdir ~/.local/share/kierancli/bin
 mv ~/.local/share/kierancli/target/release/kierancli ~/.local/share/kierancli/bin/

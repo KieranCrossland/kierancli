@@ -1,0 +1,2 @@
+
+mkdir %homepath%\kierancli

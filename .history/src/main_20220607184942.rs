@@ -138,7 +138,7 @@ fn run_program_mode() {
             prompt();
             run_rs_mode();
         } else if input.trim() == "clear" {
-            print!("{esc}[2J{esc}[1;1H", esc = 27 as char); // code to clear the terminal
+            print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
             cyan!("program: ");
         }
 
