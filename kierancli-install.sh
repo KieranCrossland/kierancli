@@ -1,6 +1,6 @@
 #!/bin/sh
 clear
-sleep 1
+sleep 2
 echo "Upgrading / Installing kierancli."
 sleep 1
 clear
