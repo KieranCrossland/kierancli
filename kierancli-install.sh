@@ -1,12 +1,12 @@
 #!/bin/sh
 echo "Upgrading / Installing kierancli."
-sleep 0.4
+sleep 0.8
 clear
 echo "Upgrading / Installing kierancli.."
-sleep 0.4
+sleep 0.8
 clear
 echo "Upgrading / Installing kierancli..."
-sleep 0.4
+sleep 0.8
 clear
 rm -rf ~/.local/share/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancli/
