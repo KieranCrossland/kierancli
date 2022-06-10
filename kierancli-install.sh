@@ -17,5 +17,6 @@ echo attempting to symlink binary to /usr/local/bin/
 echo symlink could fail on BSD/Unix due to lack of sudo
 sudo ln -sf ~/.local/share/kierancli/bin/kierancli /usr/local/bin/kierancli
 echo install succeeded!
+date > ~/.local/share/kierancli/timebuilt
 echo ""
 echo run kierancli
