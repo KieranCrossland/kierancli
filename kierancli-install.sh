@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ""
-sleep 2
+sleep 1
 
 echo "Upgrading / Installing kierancli..."
 sleep 1
