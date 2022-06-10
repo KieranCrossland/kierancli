@@ -4,6 +4,7 @@ sleep 1
 
 echo "Upgrading / Installing kierancli..."
 sleep 1
+echo ""
 rm -rf ~/.local/share/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancli/
 cd ~/.local/share/kierancli
