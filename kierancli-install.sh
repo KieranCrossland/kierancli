@@ -1,12 +1,7 @@
 #!/bin/sh
-clear
+echo ""
 sleep 2
-echo "Upgrading / Installing kierancli."
-sleep 1
-clear
-echo "Upgrading / Installing kierancli.."
-sleep 1
-clear
+
 echo "Upgrading / Installing kierancli..."
 sleep 1
 rm -rf ~/.local/share/kierancli/
