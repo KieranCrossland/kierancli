@@ -120,6 +120,7 @@ fn run_program_mode() {
     loop {
         yellow!("Program: ");
         homedir();
+
         print!("> ");
         stdout().flush();
         let mut input = String::new();
@@ -150,14 +151,14 @@ fn run_program_mode() {
     }
 }
 
-//ls function in rust
+//part of ls implementation in rust
 fn ls() {
     if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
     }
 }
-//ls function in rust
+//part of ls implementation in rust
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     if dir.is_dir() {
         for entry in fs::read_dir(dir)? {

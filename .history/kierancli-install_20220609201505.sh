@@ -1,5 +1,5 @@
 #!/bin/sh
-echo Beginning install of kierancli
+echo Beginning install of kierancli.
 sleep 1
 rm -rf ~/.local/share/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancli/
