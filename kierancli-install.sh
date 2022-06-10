@@ -1,6 +1,13 @@
 #!/bin/sh
-echo Starting kierancli installation.
-sleep 1
+echo "Upgrading / Installing kierancli."
+sleep 0.4
+clear
+echo "Upgrading / Installing kierancli.."
+sleep 0.4
+clear
+echo "Upgrading / Installing kierancli..."
+sleep 0.4
+clear
 rm -rf ~/.local/share/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancli/
 cd ~/.local/share/kierancli
