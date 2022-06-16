@@ -29,7 +29,6 @@ fn run_rs_mode() {
         "ls" => { ls();prompt() }
         "pwd" => pwd().expect("failed to pwd"),
         "q" => main(),
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),
         },
