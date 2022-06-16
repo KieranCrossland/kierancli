@@ -91,7 +91,7 @@ fn run_program_mode() {
             "mode program" => {prompt();run_program_mode()}
             "mode rust" => main(),
             "mode gitclone" => gitclone(),
-            _ => print!(""),
+            _ => ,
         }
         let mut parts = input.trim().split_whitespace();
         let command = parts.next().unwrap();
