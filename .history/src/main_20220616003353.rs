@@ -29,7 +29,7 @@ fn run_rs_mode() {
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         "pwd" => pwd().expect("failed to pwd"),
         "q" => qexit(),
-        _ => { red_ln!("Command not found.");prompt() }
+        _ => {red_ln!("Command not found.");prompt() }
     }
     run_rs_mode();
 }
@@ -42,14 +42,33 @@ fn gitclone() {
         .read_line(&mut input_url)
         .expect("std::io failed read");
 
-    match input_url.as_str().trim() {
-        "q" => main(),
-        "self" => {
-            let _repo = match Repository::clone(
-            "https://github.com/KieranCrossland/kierancli","kierancli_self",
-            ) {Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
-        _ => { red_ln!("Command not found.");gitclone() }
+    if input_url.as_str().trim() == "q" {
+        prompt();
+        run_rs_mode();
+    } else if input_url.trim() == "self" {
+        let _repo = match Repository::clone(
+            "https://github.com/KieranCrossland/kierancli",
+            "kierancli_self",
+        ) {
+            Ok(_repo) => _repo,
+            Err(e) => panic!("failed to clone: {}", e),
+        };
+        prompt();
+        run_rs_mode();
+    } else if input_url.trim() == "q" {
+        prompt();
+        run_rs_mode();
+    } else if input_url.trim() == "clear" {
+        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
+        green!("(q to quit)Enter a git-repo URL:");
+    } else {
+        let _repo = match Repository::clone(&input_url.as_str().trim(), "git_cloned") {
+            Ok(_repo) => _repo,
+            Err(e) => panic!("failed to clone: {}", e),
+        };
+        blue!("{} was cloned\n", input_url);
+        prompt();
+        run_rs_mode();
     }
 }
 

@@ -46,11 +46,42 @@ fn gitclone() {
         "q" => main(),
         "self" => {
             let _repo = match Repository::clone(
-            "https://github.com/KieranCrossland/kierancli","kierancli_self",
-            ) {Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
+                "https://github.com/KieranCrossland/kierancli",
+                "kierancli_self",
+            ) {
+                Ok(_repo) => _repo,
+                Err(e) => panic!("failed to clone: {}", e),
+            };
+            prompt();
+            run_rs_mode();
+        }
+
         _ => { red_ln!("Command not found.");gitclone() }
+        
+    
+    
     }
+
+
+
+
+    
+    } else if input_url.trim() == "self" {
+        let _repo = match Repository::clone(
+            "https://github.com/KieranCrossland/kierancli",
+            "kierancli_self",
+        ) {
+            Ok(_repo) => _repo,
+            Err(e) => panic!("failed to clone: {}", e),
+        };
+        prompt();
+        run_rs_mode();
+    } else if input_url.trim() == "q" {
+        prompt();
+        run_rs_mode();
+    } else if input_url.trim() == "clear" {
+        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
+        green!("(q to quit)Enter a git-repo URL:");
 }
 
 fn help() {

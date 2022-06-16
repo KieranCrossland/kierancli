@@ -26,7 +26,7 @@ fn run_rs_mode() {
         "mode rust" => main(),
         "mode gitclone" => gitclone(),
         "ls" => { ls();prompt() }
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
+        "clear" => {print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         "pwd" => pwd().expect("failed to pwd"),
         "q" => qexit(),
         _ => { red_ln!("Command not found.");prompt() }
@@ -46,12 +46,24 @@ fn gitclone() {
         "q" => main(),
         "self" => {
             let _repo = match Repository::clone(
-            "https://github.com/KieranCrossland/kierancli","kierancli_self",
-            ) {Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
+                "https://github.com/KieranCrossland/kierancli",
+                "kierancli_self",
+            ) {
+                Ok(_repo) => _repo,
+                Err(e) => panic!("failed to clone: {}", e),
+            };
+            prompt();
+            run_rs_mode();
+        }
+        "clear" => {print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         _ => { red_ln!("Command not found.");gitclone() }
+        
+    
+    
     }
-}
+
+
+
 
 fn help() {
     green!("Avaliable commands: ");
