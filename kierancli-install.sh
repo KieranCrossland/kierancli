@@ -1,7 +1,8 @@
 #!/bin/sh
-echo Beginning install of kierancli
+echo BEGINNING INSTALL.
+echo ""
 sleep 1
-
+clear
 echo "Upgrading / Installing kierancli..."
 sleep 1
 echo ""
@@ -16,6 +17,7 @@ echo ""
 echo attempting to symlink binary to /usr/local/bin/
 echo symlink could fail on BSD/Unix due to lack of sudo
 sudo ln -sf ~/.local/share/kierancli/bin/kierancli /usr/local/bin/kierancli
+echo ""
 echo install succeeded!
 date > build_date
 echo ""
