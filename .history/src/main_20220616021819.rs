@@ -2,6 +2,7 @@ use git2::Repository;
 use std::io::{self, stdin, stdout, Write};
 use std::{env, process, process::Command};
 use std::{error::Error, fs, path::Path};
+use open::that;
 #[macro_use]
 extern crate colour;
 
