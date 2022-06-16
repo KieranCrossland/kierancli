@@ -36,7 +36,12 @@ fn run_rs_mode() {
         },
         _ => { red_ln!("Command not found.");main() }
     }
-
+    let (tx, rx) = channel(); //Unix signal interceptor
+    ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
+    green_ln!("Waiting for Ctrl-C:");
+    rx.recv().expect("Could not receive from channel.");
+/    yellow!("Exiting:\n");
+    process::exit(0);
 }    
 
 
