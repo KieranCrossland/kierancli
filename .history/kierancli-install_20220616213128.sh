@@ -1,7 +1,6 @@
 #!/bin/sh
 #Information section
 echo SOFTWARE DETAILS
-echo ""
 sleep 0.8
 echo "name = 'kierancli'"
 sleep 0.8
