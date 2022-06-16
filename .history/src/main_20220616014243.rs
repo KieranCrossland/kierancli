@@ -6,6 +6,7 @@ use std::{error::Error, fs, path::Path};
 extern crate colour;
 
 fn main() {
+    //
     prompt();
     run_rs_mode();
 }

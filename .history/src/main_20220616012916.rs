@@ -6,6 +6,7 @@ use std::{error::Error, fs, path::Path};
 extern crate colour;
 
 fn main() {
+    //
     prompt();
     run_rs_mode();
 }
@@ -72,7 +73,8 @@ fn homedir() {
     }
 }
 
-//exit that is called with input "q" ,eventually I should impelement posix signal handling
+//exit that is called with input "q"
+//eventually I should impelement posix signal handling
 fn qexit() {
     green_ln!("Exiting:");
     process::exit(0);
@@ -84,23 +86,38 @@ fn run_program_mode() {
         homedir();
         print!("> ");
         stdout().flush();
-
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();
 
+        
+        
         match input.as_str().trim() {
             "q" => {prompt();run_rs_mode()}
-            "mode program" => {prompt();run_program_mode()}
-            "mode rust" => main(),
-            "mode gitclone" => gitclone(),
-            "clear" => {  main();print!("{esc}[2J{esc}[1;1H", esc = 27 as char);run_program_mode()}
             _ => println!("Not a program"),
+
         }
+        if input.as_str().trim() == "q" {
+            prompt();
+            run_rs_mode();
+        } else if input.trim() == "mode gitclone" {
+            gitclone();
+        } else if input.trim() == "mode program" {
+            prompt();
+            run_program_mode();
+        } else if input.trim() == "mode rust" {
+            prompt();
+            run_rs_mode();
+        } else if input.trim() == "clear" {
+            print!("{esc}[2J{esc}[1;1H", esc = 27 as char); // code to clear the terminal
+            cyan!("program: ");
+        }
+
         let mut parts = input.trim().split_whitespace();
         let command = parts.next().unwrap();
         let args = parts;
-        let mut child = Command::new(command).args(args).spawn().unwrap();  
-        child.wait(); // don't accept another command until this one completes
+        let mut child = Command::new(command).args(args).spawn().unwrap();
+        // don't accept another command until this one completes
+        child.wait();
     }
 }
 

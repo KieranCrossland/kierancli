@@ -6,6 +6,7 @@ use std::{error::Error, fs, path::Path};
 extern crate colour;
 
 fn main() {
+    //
     prompt();
     run_rs_mode();
 }
@@ -93,15 +94,20 @@ fn run_program_mode() {
             "mode program" => {prompt();run_program_mode()}
             "mode rust" => main(),
             "mode gitclone" => gitclone(),
-            "clear" => {  main();print!("{esc}[2J{esc}[1;1H", esc = 27 as char);run_program_mode()}
+            "clear" => { clearscreen()}
             _ => println!("Not a program"),
         }
         let mut parts = input.trim().split_whitespace();
         let command = parts.next().unwrap();
         let args = parts;
-        let mut child = Command::new(command).args(args).spawn().unwrap();  
-        child.wait(); // don't accept another command until this one completes
+        let mut child = Command::new(command).args(args).spawn().unwrap();
+        // don't accept another command until this one completes
+        child.wait();
     }
+}
+
+fn clearscreen() {
+    print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
 }
 
 //ls function in rust
