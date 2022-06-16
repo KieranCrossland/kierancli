@@ -34,6 +34,6 @@ sudo ln -sf ~/.local/share/kierancli/bin/kierancli /usr/local/bin/kierancli
 echo ""
 echo INSTALL SUCCEEDED
 date > build_date
-echo "last build date @ ~/.local/share/kierancli/build_date"
+echo "last build time @ ~/.local/share/kierancli/build_date"
 echo ""
 echo run kierancli

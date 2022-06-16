@@ -1,6 +1,5 @@
 #!/bin/sh
-#Information section
-echo SOFTWARE DETAILS
+echo INFORMATION ABOUT THE SOFTWARE.
 sleep 0.5
 echo "name = 'kierancli'"
 sleep 0.5
@@ -13,11 +12,9 @@ sleep 0.5
 echo "repository = 'https://github.com/kierancrossland/kierancli/'"
 echo ""
 sleep 0.5
-
-
-#Install section
-echo BEGINNING INSTALL / UPGRADE
-sleep 0.5
+echo BEGINNING INSTALL
+echo "Upgrading / Installing kierancli..."
+sleep 0.6
 echo "running rm -rf ~/.local/share/kierancli/"
 rm -rf ~/.local/share/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancli/
@@ -32,8 +29,7 @@ echo attempting to symlink binary to /usr/local/bin/
 echo symlink could fail on BSD/Unix due to lack of sudo
 sudo ln -sf ~/.local/share/kierancli/bin/kierancli /usr/local/bin/kierancli
 echo ""
-echo INSTALL SUCCEEDED
+echo install succeeded!
 date > build_date
-echo "last build date @ ~/.local/share/kierancli/build_date"
 echo ""
 echo run kierancli

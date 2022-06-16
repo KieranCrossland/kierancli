@@ -32,8 +32,7 @@ echo attempting to symlink binary to /usr/local/bin/
 echo symlink could fail on BSD/Unix due to lack of sudo
 sudo ln -sf ~/.local/share/kierancli/bin/kierancli /usr/local/bin/kierancli
 echo ""
-echo INSTALL SUCCEEDED
+echo INSTALL SUCCEEDED!
 date > build_date
-echo "last build date @ ~/.local/share/kierancli/build_date"
 echo ""
 echo run kierancli
