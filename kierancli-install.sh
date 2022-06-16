@@ -1,4 +1,5 @@
 #!/bin/sh
+clear
 echo BEGINNING INSTALL.
 echo ""
 sleep 1
