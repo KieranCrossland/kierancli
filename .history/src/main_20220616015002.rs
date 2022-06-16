@@ -46,7 +46,8 @@ fn gitclone() {
                   ){Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         _ => {red_ln!("Command not found.");gitclone()}
-    }}
+    }
+}
 
 fn help() {
     green!("Avaliable commands: ");
@@ -91,6 +92,7 @@ fn run_program_mode() {
             "mode program" => {prompt();run_program_mode()}
             "mode rust" => main(),
             "mode gitclone" => gitclone(),
+            "clear" => {  main();print!("{esc}[2J{esc}[1;1H", esc = 27 as char);run_program_mode()}
             _ => println!("Not a program"),
         }
         let mut parts = input.trim().split_whitespace();
@@ -98,14 +100,16 @@ fn run_program_mode() {
         let args = parts;
         let mut child = Command::new(command).args(args).spawn().unwrap();  
         child.wait(); // don't accept another command until this one completes
-    }}
+    }
+}
 
 //ls function in rust
 fn ls() {
     if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
-    }}
+    }
+}
 //ls function in rust
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     if dir.is_dir() {
@@ -116,5 +120,7 @@ fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
                 .into_string()
                 .or_else(|f| Err(format!("Invalid entry: {:?}", f)))?;
             println!("{}", file_name);
-        }}
-    Ok(())}
+        }
+    }
+    Ok(())
+}

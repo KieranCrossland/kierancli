@@ -98,14 +98,16 @@ fn run_program_mode() {
         let args = parts;
         let mut child = Command::new(command).args(args).spawn().unwrap();  
         child.wait(); // don't accept another command until this one completes
-    }}
+    }
+}
 
 //ls function in rust
 fn ls() {
     if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
-    }}
+    }
+}
 //ls function in rust
 fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     if dir.is_dir() {
@@ -116,5 +118,7 @@ fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
                 .into_string()
                 .or_else(|f| Err(format!("Invalid entry: {:?}", f)))?;
             println!("{}", file_name);
-        }}
-    Ok(())}
+        }
+    }
+    Ok(())
+}
