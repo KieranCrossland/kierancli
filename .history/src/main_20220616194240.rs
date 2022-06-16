@@ -23,20 +23,21 @@ fn run_rs_mode() {
     io::stdin().read_line(&mut rustcommand).expect("std::io failed to read rustcommand");
 
     match rustcommand.as_str().trim() {
-        "help" => { help();main() },
-        "mode program" => run_program_mode(),
+        "help" => help(),
+        "mode program" => {run_program_mode()},
         "mode rust" => main(),
         "mode gitclone" => gitclone(),
-        "ls" => { ls();main() }
-        "pwd" => { pwd().expect("failed to pwd");main()},
-        "q" => quit(),
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);main()}
+        "ls" => { ls();prompt() }
+        "pwd" => pwd().expect("failed to pwd"),
+        "q" => sigint(),
+        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),
         },
         _ => { red_ln!("Command not found.");prompt() }
     }
-}    
+    
+}
 
 fn gitclone() {
     green!("(q to exit)Enter a git-repo URL:");
@@ -47,13 +48,10 @@ fn gitclone() {
         .expect("std::io failed read");
 
     match input_url.as_str().trim() {
-        "q" => quit(),
+        "q" => sigint(),
         "self" => {let _repo = match Repository::clone("https://github.com/KieranCrossland/kierancli","kierancli_self",
                   ){Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
-        "mode program" => run_program_mode(),
-        "mode rust" => main(),
-        "mode gitclone" => gitclone(),
         _ => {red_ln!("Command not found.");gitclone()}
     }}
 
@@ -68,14 +66,10 @@ fn help() {
 fn pwd() -> std::io::Result<()> {
     let path = env::current_dir()?;
     println!("{}", path.display());
-    Ok(())
-}
-fn pwd_prompt() -> std::io::Result<()> {
-    let path = env::current_dir()?;
-    println!("{}", path.display());
     prompt();
     Ok(())
 }
+
 fn homedir() {
     match env::home_dir() {
         Some(path) => println!("{}", path.display()),
@@ -84,16 +78,12 @@ fn homedir() {
 }
 
 //exit that is called with input "q" , Handles sigint inelegantly...
-//fn sigint() {
-//    let (tx, rx) = channel(); //Unix signal interceptor
-//    ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
-//    green_ln!("Waiting for Ctrl-C:");
-//    rx.recv().expect("Could not receive from channel.");
-//    yellow!("Exiting:\n");
-//    process::exit(0);
-//}
-
-fn quit() {
+fn sigint() {
+    let (tx, rx) = channel(); //Unix signal interceptor
+    ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
+    green_ln!("Waiting for Ctrl-C:");
+    rx.recv().expect("Could not receive from channel.");
+    yellow!("Exiting:\n");
     process::exit(0);
 }
 
@@ -107,7 +97,7 @@ fn run_program_mode() {
         stdin().read_line(&mut input).unwrap();
 
         match input.as_str().trim() {
-            "q" => quit(),
+            "q" => sigint(),
             "mode program" => {prompt();run_program_mode()}
             "mode rust" => main(),
             "mode gitclone" => gitclone(),

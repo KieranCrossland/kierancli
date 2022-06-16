@@ -70,7 +70,7 @@ fn pwd() -> std::io::Result<()> {
     println!("{}", path.display());
     Ok(())
 }
-fn pwd_prompt() -> std::io::Result<()> {
+fn pwd() -> std::io::Result<()> {
     let path = env::current_dir()?;
     println!("{}", path.display());
     prompt();

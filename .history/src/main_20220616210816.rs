@@ -65,17 +65,13 @@ fn help() {
     prompt();
 }
 
-fn pwd() -> std::io::Result<()> {
-    let path = env::current_dir()?;
-    println!("{}", path.display());
-    Ok(())
-}
 fn pwd_prompt() -> std::io::Result<()> {
     let path = env::current_dir()?;
     println!("{}", path.display());
     prompt();
     Ok(())
 }
+
 fn homedir() {
     match env::home_dir() {
         Some(path) => println!("{}", path.display()),
