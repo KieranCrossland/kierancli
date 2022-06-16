@@ -1,17 +1,18 @@
 #!/bin/sh
 #Information section
 echo SOFTWARE DETAILS
-sleep 0.8
+sleep 0.5
 echo "name = 'kierancli'"
-sleep 0.8
+sleep 0.5
 echo "authors = ['Kieran Crossland <kierancrossland1st@gmail.com>']" 
-sleep 0.8
+sleep 0.5
 echo "readme = 'README.md'"
-sleep 0.8
+sleep 0.5
 echo "license = 'AGPL-3.0'"
-sleep 0.8
+sleep 0.5
 echo "repository = 'https://github.com/kierancrossland/kierancli/'"
-sleep 0.8
+sleep 0.5
+echo "THIS IS NOT RELEASE SOFTWARE, THINGS MAY BREAK"
 
 #Install section
 echo BEGINNING INSTALL / UPGRADE
