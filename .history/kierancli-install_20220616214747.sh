@@ -16,7 +16,6 @@ echo "repository = 'https://github.com/kierancrossland/kierancli/'"
 sleep 0.8
 echo ""
 echo ""
-
 #Install section
 echo BEGINNING INSTALL / UPGRADE
 echo ""

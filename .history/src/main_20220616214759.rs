@@ -34,7 +34,7 @@ fn run_rs_mode() {
         "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),
         },
-        _ => { red_ln!("Command not found.");main() }
+        _ => { red_ln!("Command not found.");prompt() }
     }
 }    
 
