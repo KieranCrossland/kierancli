@@ -81,9 +81,9 @@ fn homedir() {
 fn sigint() {
     let (tx, rx) = channel(); //Unix signal interceptor
     ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
-    green_ln!("Waiting for Ctrl-C:");
+    green_ln!("Rust: ")!("Waiting for Ctrl-C...");
     rx.recv().expect("Could not receive from channel.");
-    yellow!("Exiting:");
+    green_ln!("Exiting:");
     process::exit(0);
 }
 

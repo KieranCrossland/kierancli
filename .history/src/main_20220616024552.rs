@@ -77,13 +77,15 @@ fn homedir() {
     }
 }
 
-//exit that is called with input "q" , Handles sigint inelegantly...
+//exit that is called with input "q" ,eventually I should impelement posix signal handling
 fn sigint() {
+    
     let (tx, rx) = channel(); //Unix signal interceptor
     ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
-    green_ln!("Waiting for Ctrl-C:");
+    println!("Waiting for Ctrl-C...");
     rx.recv().expect("Could not receive from channel.");
-    yellow!("Exiting:");
+    green_ln!("Exiting:");
+
     process::exit(0);
 }
 
@@ -91,7 +93,8 @@ fn run_program_mode() {
     loop {
         yellow!("Program: ");
         homedir();
-        print!("> ");stdout().flush();
+        print!("> ");
+        stdout().flush();
 
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();

@@ -48,7 +48,7 @@ fn gitclone() {
         .expect("std::io failed read");
 
     match input_url.as_str().trim() {
-        "q" => sigint(),
+        "q" => main(),
         "self" => {let _repo = match Repository::clone("https://github.com/KieranCrossland/kierancli","kierancli_self",
                   ){Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
@@ -77,13 +77,15 @@ fn homedir() {
     }
 }
 
-//exit that is called with input "q" , Handles sigint inelegantly...
+//exit that is called with input "q" ,eventually I should impelement posix signal handling
 fn sigint() {
+    //green_ln!("Exiting:");
     let (tx, rx) = channel(); //Unix signal interceptor
     ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
-    green_ln!("Waiting for Ctrl-C:");
+    println!("Waiting for Ctrl-C...");
     rx.recv().expect("Could not receive from channel.");
-    yellow!("Exiting:");
+    println!("Got it! Exiting..."); 
+
     process::exit(0);
 }
 
@@ -91,7 +93,8 @@ fn run_program_mode() {
     loop {
         yellow!("Program: ");
         homedir();
-        print!("> ");stdout().flush();
+        print!("> ");
+        stdout().flush();
 
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();

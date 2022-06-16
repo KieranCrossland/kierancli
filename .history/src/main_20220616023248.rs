@@ -2,8 +2,8 @@ use git2::Repository;
 use std::io::{self, stdin, stdout, Write};
 use std::{env, process, process::Command};
 use std::{error::Error, fs, path::Path};
-use std::sync::mpsc::channel;
-use ctrlc;
+use std::{thread, time::Duration, ctrlc};
+
 #[macro_use]
 extern crate colour;
 
@@ -18,6 +18,15 @@ fn prompt() {
 }
 
 fn run_rs_mode() {
+    ctrlc::set_handler(move || {
+        println!("received Ctrl+C!");
+    })
+    .expect("Error setting Ctrl-C handler");
+
+    // Following code does the actual work, and can be interrupted by pressing
+    // Ctrl-C. As an example: Let's wait a few seconds.
+    thread::sleep(Duration::from_secs(2));
+
     let mut rustcommand = String::new();
     let sourcepath = "https://github.com/KieranCrossland/kierancli";
     io::stdin().read_line(&mut rustcommand).expect("std::io failed to read rustcommand");
@@ -29,14 +38,14 @@ fn run_rs_mode() {
         "mode gitclone" => gitclone(),
         "ls" => { ls();prompt() }
         "pwd" => pwd().expect("failed to pwd"),
-        "q" => sigint(),
+        "q" => main(),
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
         "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),
         },
         _ => { red_ln!("Command not found.");prompt() }
     }
-    
+    run_rs_mode();
 }
 
 fn gitclone() {
@@ -48,7 +57,7 @@ fn gitclone() {
         .expect("std::io failed read");
 
     match input_url.as_str().trim() {
-        "q" => sigint(),
+        "q" => main(),
         "self" => {let _repo = match Repository::clone("https://github.com/KieranCrossland/kierancli","kierancli_self",
                   ){Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};prompt();run_rs_mode();}
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);prompt()}
@@ -77,13 +86,9 @@ fn homedir() {
     }
 }
 
-//exit that is called with input "q" , Handles sigint inelegantly...
-fn sigint() {
-    let (tx, rx) = channel(); //Unix signal interceptor
-    ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
-    green_ln!("Waiting for Ctrl-C:");
-    rx.recv().expect("Could not receive from channel.");
-    yellow!("Exiting:");
+//exit that is called with input "q" ,eventually I should impelement posix signal handling
+fn qexit() {
+    green_ln!("Exiting:");
     process::exit(0);
 }
 
@@ -91,13 +96,14 @@ fn run_program_mode() {
     loop {
         yellow!("Program: ");
         homedir();
-        print!("> ");stdout().flush();
+        print!("> ");
+        stdout().flush();
 
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();
 
         match input.as_str().trim() {
-            "q" => sigint(),
+            "q" => {prompt();run_rs_mode()}
             "mode program" => {prompt();run_program_mode()}
             "mode rust" => main(),
             "mode gitclone" => gitclone(),

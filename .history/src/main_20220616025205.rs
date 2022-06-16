@@ -83,7 +83,7 @@ fn sigint() {
     ctrlc::set_handler(move || tx.send(()).expect("Could not send signal on channel.")).expect("Error setting Ctrl-C handler");
     green_ln!("Waiting for Ctrl-C:");
     rx.recv().expect("Could not receive from channel.");
-    yellow!("Exiting:");
+    yellow!("Exiting.");
     process::exit(0);
 }
 
