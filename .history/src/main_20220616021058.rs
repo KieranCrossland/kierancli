@@ -29,8 +29,8 @@ fn run_rs_mode() {
         "ls" => { ls();prompt() }
         "pwd" => pwd().expect("failed to pwd"),
         "q" => main(),
-        "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
-            Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),
+        "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}' successfully.", sourcepath),
+            Err(err) => eprintln!("An error occurred when opening '{}': {}", sourcepath, err),
         },
         _ => { red_ln!("Command not found.");prompt() }
     }
@@ -55,7 +55,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("pwd , help , ls , q , source \n");
+    blue!("pwd , help , ls , q \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
     prompt();

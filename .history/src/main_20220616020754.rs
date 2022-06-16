@@ -2,7 +2,6 @@ use git2::Repository;
 use std::io::{self, stdin, stdout, Write};
 use std::{env, process, process::Command};
 use std::{error::Error, fs, path::Path};
-use open::*;
 #[macro_use]
 extern crate colour;
 
@@ -18,7 +17,6 @@ fn prompt() {
 
 fn run_rs_mode() {
     let mut rustcommand = String::new();
-    let sourcepath = "https://github.com/KieranCrossland/kierancli";
     io::stdin().read_line(&mut rustcommand).expect("std::io failed to read rustcommand");
 
     match rustcommand.as_str().trim() {
@@ -29,9 +27,7 @@ fn run_rs_mode() {
         "ls" => { ls();prompt() }
         "pwd" => pwd().expect("failed to pwd"),
         "q" => main(),
-        "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
-            Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),
-        },
+        "source" => open::that("https://rust-lang.org"),
         _ => { red_ln!("Command not found.");prompt() }
     }
     run_rs_mode();
@@ -55,7 +51,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("pwd , help , ls , q , source \n");
+    blue!("pwd , help , ls , q \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
     prompt();

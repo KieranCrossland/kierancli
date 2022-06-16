@@ -55,7 +55,7 @@ fn gitclone() {
 
 fn help() {
     green!("Avaliable commands: ");
-    blue!("pwd , help , ls , q , source \n");
+    blue!("pwd , help , ls , q, source \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
     prompt();
