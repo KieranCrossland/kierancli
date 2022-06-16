@@ -24,7 +24,7 @@ fn run_rs_mode() {
 
     match rustcommand.as_str().trim() {
         "help" => help(),
-        "mode program" => {run_program_mode()},
+        "mode program" => {run_program_mode(),
         "mode rust" => main(),
         "mode gitclone" => gitclone(),
         "ls" => { ls();prompt() }
