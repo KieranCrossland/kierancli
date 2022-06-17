@@ -33,7 +33,9 @@ fn run_rs_mode() {
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),},
         _ => { red_ln!("Command not found.");main() }
     }
+
 }    
+
 
 fn gitclone() {
     green!("(q to exit) Enter a git-repo URL:");

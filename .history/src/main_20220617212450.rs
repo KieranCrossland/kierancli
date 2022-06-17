@@ -33,7 +33,9 @@ fn run_rs_mode() {
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),},
         _ => { red_ln!("Command not found.");main() }
     }
+
 }    
+
 
 fn gitclone() {
     green!("(q to exit) Enter a git-repo URL:");
@@ -95,24 +97,26 @@ fn homedir() {
     match env::home_dir() {
         Some(path) => println!("{}", path.display()),
         None => println!("env:: failed to get $HOME"),
-    }}
+    }
+}
 
-//ls in rust
+//ls function in rust
 fn ls() {
-    if let Err(ref e) = ls_run(Path::new(".")) {
+    if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
     }}
-//part of ls in rust
-fn ls_run(dir: &Path) -> Result<(), Box<dyn Error>> {
+//ls function in rust
+fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     if dir.is_dir() {
         for entry in fs::read_dir(dir)? {
             let entry = entry?;
             let file_name = entry.file_name().into_string().or_else(|f| Err(format!("Invalid entry: {:?}", f)))?;
             println!("{}", file_name);
-        }}Ok(())}
+        }}
+    Ok(())}
 
 fn quit() {
-    red_ln!("Goodbye.");
+    green_ln!("Goodbye.");
     process::exit(0);
 }

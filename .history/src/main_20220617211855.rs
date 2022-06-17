@@ -2,6 +2,8 @@ use git2::Repository;
 use std::io::{self, stdin, stdout, Write};
 use std::{env, process, process::Command};
 use std::{error::Error, fs, path::Path};
+use std::sync::mpsc::channel;
+use ctrlc;
 #[macro_use]
 extern crate colour;
 
@@ -33,7 +35,9 @@ fn run_rs_mode() {
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),},
         _ => { red_ln!("Command not found.");main() }
     }
+
 }    
+
 
 fn gitclone() {
     green!("(q to exit) Enter a git-repo URL:");
@@ -53,6 +57,32 @@ fn gitclone() {
         "mode gitclone" => gitclone(),
         _ => {red_ln!("Command not found.");gitclone()}
     }}
+
+fn help() {
+    green!("Avaliable commands: ");
+    blue!("pwd , help , ls , q , source \n");
+    green!("Avaliable modes: ");
+    blue!("rust , program , gitclone\n");
+    rsmode_prompt();
+}
+
+fn pwd() -> std::io::Result<()> {
+    let path = env::current_dir()?;
+    println!("{}", path.display());
+    Ok(())
+}
+
+fn homedir() {
+    match env::home_dir() {
+        Some(path) => println!("{}", path.display()),
+        None => println!("env:: failed to get $HOME"),
+    }
+}
+
+
+fn quit() {
+    process::exit(0);
+}
 
 fn run_program_mode() {
     loop {
@@ -77,42 +107,18 @@ fn run_program_mode() {
         child.wait(); // don't accept another command until this one completes
     }}
 
-fn help() {
-    green!("Avaliable commands: ");
-    blue!("pwd , help , ls , q , source \n");
-    green!("Avaliable modes: ");
-    blue!("rust , program , gitclone\n");
-    rsmode_prompt();
-}
-
-fn pwd() -> std::io::Result<()> {
-    let path = env::current_dir()?;
-    println!("{}", path.display());
-    Ok(())
-}
-
-fn homedir() {
-    match env::home_dir() {
-        Some(path) => println!("{}", path.display()),
-        None => println!("env:: failed to get $HOME"),
-    }}
-
-//ls in rust
+//ls function in rust
 fn ls() {
-    if let Err(ref e) = ls_run(Path::new(".")) {
+    if let Err(ref e) = run(Path::new(".")) {
         println!("{}", e);
         process::exit(1);
     }}
-//part of ls in rust
-fn ls_run(dir: &Path) -> Result<(), Box<dyn Error>> {
+//ls function in rust
+fn run(dir: &Path) -> Result<(), Box<dyn Error>> {
     if dir.is_dir() {
         for entry in fs::read_dir(dir)? {
             let entry = entry?;
             let file_name = entry.file_name().into_string().or_else(|f| Err(format!("Invalid entry: {:?}", f)))?;
             println!("{}", file_name);
-        }}Ok(())}
-
-fn quit() {
-    red_ln!("Goodbye.");
-    process::exit(0);
-}
+        }}
+    Ok(())}
