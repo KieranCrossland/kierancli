@@ -38,16 +38,19 @@ fn run_rs_mode() {
 fn gitclone() {
     green!("(q to exit) Enter a git-repo URL:");
     let mut input_url = String::new();
-    io::stdin().read_line(&mut input_url).expect("std::io failed read");
+
+    io::stdin()
+        .read_line(&mut input_url)
+        .expect("std::io failed read");
 
     match input_url.as_str().trim() {
         "q" => quit(),
         "self" => {let _repo = match Repository::clone("https://github.com/KieranCrossland/kierancli","kierancli_self",
                   ){Ok(_repo) => _repo,Err(e) => panic!("failed to clone: {}", e),};rsmode_prompt();run_rs_mode();}
+        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);rsmode_prompt()}
         "mode program" => run_program_mode(),
         "mode rust" => main(),
         "mode gitclone" => gitclone(),
-        "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);rsmode_prompt()}
         _ => {red_ln!("Command not found.");gitclone()}
     }
 }
@@ -59,7 +62,6 @@ fn run_program_mode() {
         print!("> ");stdout().flush();
 
         let mut input = String::new();
-
         stdin().read_line(&mut input).unwrap();
 
         match input.as_str().trim() {

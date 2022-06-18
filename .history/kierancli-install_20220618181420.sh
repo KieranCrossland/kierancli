@@ -3,15 +3,15 @@
 echo ""
 echo SOFTWARE DETAILS
 echo ""
-sleep 0.7
+sleep 0.8
 echo "name = 'kierancli'"
-sleep 0.7
+sleep 0.8
 echo "authors = ['Kieran Crossland <kierancrossland1st@gmail.com>']" 
-sleep 0.7
+sleep 0.8
 echo "license = 'AGPL-3.0'"
-sleep 0.7
+sleep 0.8
 echo "repository = 'https://github.com/kierancrossland/kierancli/'"
-sleep 0.7
+sleep 0.8
 echo ""
 echo ""
 

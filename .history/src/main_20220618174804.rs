@@ -38,6 +38,7 @@ fn run_rs_mode() {
 fn gitclone() {
     green!("(q to exit) Enter a git-repo URL:");
     let mut input_url = String::new();
+
     io::stdin().read_line(&mut input_url).expect("std::io failed read");
 
     match input_url.as_str().trim() {
