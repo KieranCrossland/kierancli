@@ -3,7 +3,7 @@
 echo "Welcome to the installer for kierancli."
 sleep 2
 echo "SOFTWARE INFORMATION"
-sleep 0.2
+sleep 2
 echo ""
 echo "Contact email 'kierancrossland1st@gmail.com'" 
 sleep 0.2
@@ -16,7 +16,7 @@ echo ""
 #Install section
 echo BEGINNING INSTALL / UPGRADE
 echo ""
-sleep 0.5
+sleep 2
 echo "Deleting prior versions in ~/.local/share/"
 rm -rf ~/.local/share/kierancli/
 rm -rf ~/.local/share/kieran_crossland/kierancli/
