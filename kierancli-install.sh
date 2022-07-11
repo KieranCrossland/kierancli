@@ -22,12 +22,13 @@ echo BEGINNING INSTALL / UPGRADE
 echo ""
 sleep 2
 echo "Deleting prior versions in ~/.local/share/"
+echo ""
 rm -rf ~/.local/share/kierancli/
 rm -rf ~/.local/share/kieran_crossland/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kieran_crossland/kierancli/
 cd ~/.local/share/kieran_crossland/kierancli
 echo "If install fails here then Cargo is not presesnt."
-echo "running cargo build --release"
+echo "Building with cargo --release"
 cargo build --release
 echo ""
 echo attempting to symlink binary to /usr/local/bin/
