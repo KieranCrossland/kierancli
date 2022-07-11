@@ -23,5 +23,5 @@ sudo ln -sf ~/.local/share/kieran_crossland/kierancli/target/release/kierancli /
 date > build_date
 echo "last build/install date @ ~/.local/share/kieran_crossland/kierancli/build_date"
 which kierancli
-echo "Ignore all compiler warnings, they are either your fault (fix them) or my fault for using depreciated functions"
+echo "Ignore all compiler warnings, they are either your fault (fix them) or my fault for using depreciated functions. I love my depreciated functions and probably will keep using them."
 echo Program installed, run kierancli.
