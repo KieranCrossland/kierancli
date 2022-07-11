@@ -6,7 +6,7 @@ echo "Welcome to the Unix installer for kierancli."
 sleep 3
 echo ""
 echo "SOFTWARE INFORMATION"
-sleep 2
+sleep 1
 echo ""
 echo "Contact email 'kierancrossland1st@gmail.com'" 
 sleep 0.4
@@ -16,9 +16,9 @@ echo "source repository = 'https://github.com/kierancrossland/kierancli/'"
 echo ""
 sleep 1
 #Install section
-echo BEGINNING INSTALL / UPGRADE
+echo BEGINNING INSTALL
 echo ""
-sleep 2
+sleep 1
 echo "Deleting prior versions in ~/.local/share/"
 echo ""
 rm -rf ~/.local/share/kierancli/
