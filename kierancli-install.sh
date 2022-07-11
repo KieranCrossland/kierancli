@@ -1,9 +1,8 @@
 #!/bin/sh
 #Information section
-
+clear
 echo ""
 echo "Welcome to the Unix installer for kierancli."
-clear
 sleep 3
 echo ""
 echo "SOFTWARE INFORMATION"
