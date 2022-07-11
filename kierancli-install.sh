@@ -1,5 +1,6 @@
 #!/bin/sh
 #Information section
+clear
 echo ""
 echo "Welcome to the Unix installer for kierancli."
 
@@ -9,12 +10,13 @@ echo "SOFTWARE INFORMATION"
 sleep 2
 echo ""
 echo "Contact email 'kierancrossland1st@gmail.com'" 
-sleep 0.2
+sleep 0.4
 echo "License = 'GNU AGPL-3.0'"
-sleep 0.2
+sleep 0.4
 echo "source repository = 'https://github.com/kierancrossland/kierancli/'"
 echo ""
-
+sleep 1
+clear
 #Install section
 echo BEGINNING INSTALL / UPGRADE
 echo ""
