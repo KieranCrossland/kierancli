@@ -3,7 +3,7 @@
 echo ""
 echo "Welcome to the Unix installer for kierancli."
 
-sleep 2
+sleep 3
 echo ""
 echo "SOFTWARE INFORMATION"
 sleep 2
