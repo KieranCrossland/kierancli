@@ -1,7 +1,10 @@
 #!/bin/sh
 #Information section
-echo "Welcome to the installer for kierancli."
+echo ""
+echo "Welcome to the Unix installer for kierancli."
+
 sleep 2
+echo ""
 echo "SOFTWARE INFORMATION"
 sleep 2
 echo ""
@@ -10,7 +13,6 @@ sleep 0.2
 echo "License = 'GNU AGPL-3.0'"
 sleep 0.2
 echo "source repository = 'https://github.com/kierancrossland/kierancli/'"
-echo ""
 echo ""
 
 #Install section
