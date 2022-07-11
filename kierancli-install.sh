@@ -1,20 +1,9 @@
 #!/bin/sh
 #Information section
 clear
-echo ""
 echo "Welcome to the Unix installer for kierancli."
 sleep 3
-echo ""
-echo "SOFTWARE INFORMATION"
-sleep 1
-echo ""
-echo "Contact email 'kierancrossland1st@gmail.com'" 
-sleep 0.4
-echo "License = 'GNU AGPL-3.0'"
-sleep 0.4
-echo "source repository = 'https://github.com/kierancrossland/kierancli/'"
-echo ""
-sleep 1
+echo "information can be found @ ~/.local/share/kieran_crossland/kierancli/Cargo.toml"
 #Install section
 echo BEGINNING INSTALL
 echo ""
