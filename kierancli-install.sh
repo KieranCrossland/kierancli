@@ -1,9 +1,9 @@
 #!/bin/sh
 #Information section
-clear
+
 echo ""
 echo "Welcome to the Unix installer for kierancli."
-
+clear
 sleep 3
 echo ""
 echo "SOFTWARE INFORMATION"
@@ -16,7 +16,6 @@ sleep 0.4
 echo "source repository = 'https://github.com/kierancrossland/kierancli/'"
 echo ""
 sleep 1
-clear
 #Install section
 echo BEGINNING INSTALL / UPGRADE
 echo ""
