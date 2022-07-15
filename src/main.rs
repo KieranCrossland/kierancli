@@ -21,7 +21,7 @@ fn run_rs_mode() {
     io::stdin().read_line(&mut rustcommand).expect("std::io failed to read rustcommand");
 
     match rustcommand.as_str().trim() {
-        "help" => { help();main() },
+        "help" => { help(); },
         "mode program" => run_program_mode(),
         "mode rust" => main(),
         "mode gitclone" => gitclone(),
