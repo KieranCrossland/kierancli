@@ -6,7 +6,7 @@ sleep 3
 echo "Information can be found @ ~/.local/share/kieran_crossland/kierancli/Cargo.toml"
 #Install section
 echo "."
-echo BEGINNING BUILD & INSTALL
+echo "BEGINNING BUILD & INSTALL"
 cd ~/.local/share/
 pwd
 sleep 1
