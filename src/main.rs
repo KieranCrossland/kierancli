@@ -82,7 +82,7 @@ fn help() {
     blue!("pwd , help , ls , q , source \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
-    rsmode_prompt();
+    main();
 }
 
 fn pwd() -> std::io::Result<()> {
