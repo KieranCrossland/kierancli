@@ -7,9 +7,9 @@ echo "Information can be found @ ~/.local/share/kieran_crossland/kierancli/Cargo
 #Install section
 echo ""
 cd ~/.local/share/
-pwd
 sleep 1
-echo "Configuring directories in ~/.local/share/"
+echo "Configuring directories in:"
+pwd
 echo ""
 rm -rf ~/.local/share/kierancli/
 rm -rf ~/.local/share/kieran_crossland/kierancli/
