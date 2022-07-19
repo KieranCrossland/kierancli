@@ -24,8 +24,9 @@ echo ""
 echo "Building with cargo --release"
 echo ""
 cargo build --release
+echo ""
 echo attempting to symlink binary to /usr/local/bin/
-echo symlink could fail on other Unix systems due to their lack of sudo
+echo symlink could fail on other systems due to lack of sudo
 sudo ln -sf ~/.local/share/kierancrossland/kierancli/target/release/kierancli /usr/local/bin/kierancli
 date > build_date
 echo ""
