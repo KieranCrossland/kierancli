@@ -15,6 +15,7 @@ rm -rf ~/.local/share/kierancli/
 rm -rf ~/.local/share/kieran_crossland/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kieran_crossland/kierancli/
 cd ~/.local/share/kieran_crossland/kierancli
+echo ""
 echo "If install fails here then Cargo is not presesnt."
 echo ""
 echo "Building with cargo --release"
