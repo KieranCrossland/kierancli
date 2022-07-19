@@ -4,6 +4,8 @@ clear
 echo "Welcome to the Unix installer for kierancli."
 sleep 2
 echo "Information can be found @ ~/.local/share/kieran_crossland/kierancli/Cargo.toml"
+echo ""
+echo "Git repository @ https://github.com/KieranCrossland/kierancli/"
 #Install section
 echo ""
 cd ~/.local/share/
