@@ -1,7 +1,7 @@
 #!/bin/sh
 #Information section
 clear
-echo "Welcome to the Unix installer for kierancli."
+echo "Welcome to the Shell installer for kierancli."
 sleep 2
 echo ""
 echo "Information @ ~/.local/share/kierancrossland/kierancli/Cargo.toml"
