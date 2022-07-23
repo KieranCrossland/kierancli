@@ -118,8 +118,8 @@ fn ls_run(dir: &Path) -> Result<(), Box<dyn Error>> {
 
 fn datebuilt() {    
     Command::new("cat")
-            .arg(" ~/.local/share/kierancrossland/kierancli/build_date")
             .spawn()
+            .arg("")
             .expect("Failed to cat ~/.local/share/kierancrossland/kierancli/build_date");
     main();
 }
