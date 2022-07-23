@@ -79,8 +79,8 @@ fn run_program_mode() {
 }
 
 fn help() {
-    magent!("Avaliable commands: ");
-    blue!("pwd , help , ls , q , source, datebuilt \n");
+    magenta!("Avaliable commands: ");
+    blue!("pwd , help , ls , q , source \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
     main();

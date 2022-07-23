@@ -79,8 +79,8 @@ fn run_program_mode() {
 }
 
 fn help() {
-    magent!("Avaliable commands: ");
-    blue!("pwd , help , ls , q , source, datebuilt \n");
+    green!("Avaliable commands: ");
+    blue!("pwd , help , ls , q , source \n");
     green!("Avaliable modes: ");
     blue!("rust , program , gitclone\n");
     main();
@@ -116,11 +116,11 @@ fn ls_run(dir: &Path) -> Result<(), Box<dyn Error>> {
         }}Ok(())}
 
 
-fn datebuilt() {    
+fn datebuilt() {
+    
     Command::new("cat ~/.local/share/kieran_crossland/kierancli/build_date")
             .spawn()
-            .expect("Failed to cat ~/.local/share/kieran_crossland/kierancli/build_date");
-    main();
+            .expect("ls command failed to start");
 }
         
 fn quit() {
