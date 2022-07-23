@@ -30,7 +30,7 @@ echo symlink could fail on other systems due to lack of sudo
 sudo ln -sf ~/.local/share/kierancrossland/kierancli/target/release/kierancli /usr/local/bin/kierancli
 sudo mkdir /etc/kierancrossland/
 sudo mkdir /etc/kierancrossland/kierancli
-sudo date > /etc/kierancrossland/kierancli/built
+date > /etc/kierancrossland/kierancli/built
 echo ""
 echo "Last build/install date @ /etc/kierancrossland/kierancli/built"
 echo ""
