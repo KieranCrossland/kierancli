@@ -123,6 +123,7 @@ fn datebuilt() {
             .arg("-a")
             .spawn()
             .expect("ls command failed to start");
+
 }
         
 fn quit() {
