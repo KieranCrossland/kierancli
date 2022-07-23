@@ -28,7 +28,6 @@ fn run_rs_mode() {
         "ls" => { ls();main() }
         "pwd" => { pwd().expect("failed to pwd");main()},
         "q" => quit(),
-        "datebuilt" => datebuilt(),
         "clear" => { print!("{esc}[2J{esc}[1;1H", esc = 27 as char);main()}
         "source" => match open::that(sourcepath) {Ok(()) => println!("Opened '{}'", sourcepath),
             Err(err) => eprintln!("Failed opening '{}': {}", sourcepath, err),},
@@ -117,7 +116,11 @@ fn ls_run(dir: &Path) -> Result<(), Box<dyn Error>> {
 
 
 fn datebuilt() {
-    Command::new("sh").arg("-c").arg("cat ~/.local/share/kieran_crossland/kierancli/build_date").output().expect("failed to execute process");
+    Command::new("sh")
+            .arg("-c")
+            .arg("echo hello")
+            .output()
+            .expect("failed to execute process")
 }
         
 fn quit() {
