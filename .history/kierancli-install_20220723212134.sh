@@ -14,9 +14,8 @@ sleep 1
 echo "Configuring directories in:"
 pwd
 echo ""
-sudo rm -rf ~/.local/share/kierancli/
-sudo rm -rf /etc/kierancrossland/
-sudo rm -rf /etc/kierancrossland/kierancli
+rm -rf ~/.local/share/kierancli/
+rm -rf /etc/kierancrossland/
 rm -rf ~/.local/share/kierancrossland/kierancli/
 git clone https://github.com/kierancrossland/kierancli ~/.local/share/kierancrossland/kierancli/
 cd ~/.local/share/kierancrossland/kierancli
