@@ -31,7 +31,7 @@ sudo ln -sf ~/.local/share/kierancrossland/kierancli/target/release/kierancli /u
 mkdir /etc/kierancrossland/kierancli
 date > /etc/kierancrossland/kierancli/built
 echo ""
-echo "Last build/install date @ /etc/kierancrossland/kierancli/built"
+echo "Last build/install date @ ~/.local/share/kierancrossland/kierancli/build_date"
 echo ""
 echo "Ignore all compiler warnings, they are either your fault (fix them) or my fault for using depreciated functions. I love my depreciated functions and probably will keep using them."
 
