@@ -1,9 +1,12 @@
 #!/bin/sh
+#Information section
 clear
 echo "Welcome to the Shell installer for kierancli."
 echo ""
 echo "Information @ ~/.local/share/kierancrossland/kierancli/Cargo.toml"
+echo ""
 echo "Git repository @ https://github.com/KieranCrossland/kierancli/"
+#Install section
 echo ""
 cd ~/.local/share/
 echo "Configuring directories in:"
